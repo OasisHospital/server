@@ -9,14 +9,14 @@ module.exports = function(change, maindb) {
                     transporter = nodemailer.createTransport({
                         service: 'Gmail',
                         auth: {
-                            user: 'quality.test@oasishospital.org',
-                            pass: 'Oasis@123'
+                            user: '',
+                            pass: ''
                         }
                     }),
                     
                     idSplit = id.split("_"),
                     idNum = idSplit[1],
-                    link = 'http://localhost:4200/#/incident/edit/'+idNum,
+                    link = 'http://oasisincident/#/incident/edit/'+idNum,
                     reviewers = currentDoc.reviewers,
                     emailSend = false,
                     mailOptions;
@@ -25,8 +25,8 @@ module.exports = function(change, maindb) {
                 if(currentDoc.statusOfIncident == 'Opened'){
 
                         mailOptions = {
-                        from: 'quality.test@oasishospital.org', // sender address 
-                        to: 'binin.pottassery@oasishospital.org', // list of receivers 
+                        from: 'quality.incident@oasishospital.org', // sender address 
+                        to: 'quality.test@oasishospital.org', // list of receivers 
                         subject: 'Incident Created', // Subject line 
                         text: 'Incident Report has been created', // plaintext body 
                         html: '<b>An Incident has been created:</b>'+link 
@@ -40,7 +40,7 @@ module.exports = function(change, maindb) {
                             if(body.notificationSend === false){
                                 
                                 mailOptions = {
-                                from: 'quality.test@oasishospital.org', // sender address 
+                                from: 'quality.incident@oasishospital.org', // sender address 
                                 to: body.reviewerEmail, // list of receivers 
                                 subject: 'Request for Review of Incident', // Subject line 
                                 text: 'Incident Report has been updated', // plaintext body 
@@ -70,8 +70,8 @@ module.exports = function(change, maindb) {
                 else
                 {
                     mailOptions = {
-                        from: 'quality.test@oasishospital.org', // sender address 
-                        to: 'binin.pottassery@oasishospital.org', // list of receivers 
+                        from: 'quality.incident@oasishospital.org', // sender address 
+                        to: 'quality.test@oasishospital.org', // list of receivers 
                         subject: 'Incident Updated', // Subject line 
                         text: 'Incident Report has been updated', // plaintext body 
                         html: '<b>Incident has been updated:</b>'+link 
